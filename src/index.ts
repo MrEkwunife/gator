@@ -4,10 +4,12 @@ import type { CommandRegistry } from "./types";
 import { runCommand } from "./lib/utils/run";
 import { handlerLogin } from "./commands/login";
 import { handlerRegister } from "./commands/register";
+import { handlerReset } from "./commands/reset";
 
 const commandRegiter: CommandRegistry = {
   login: handlerLogin,
   register: handlerRegister,
+  reset: handlerReset,
 };
 
 async function main() {
