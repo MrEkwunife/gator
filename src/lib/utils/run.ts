@@ -1,6 +1,6 @@
 import { CommandRegistry } from "src/types";
 
-export function runCommand(
+export async function runCommand(
   registry: CommandRegistry,
   cmdName: string,
   ...args: string[]
@@ -17,7 +17,7 @@ export function runCommand(
   }
 
   try {
-    commandToRun(cmdName, ...args);
+    await commandToRun(cmdName, ...args);
   } catch (e) {
     throw new Error(`Error:\n\t${(e as Error).message}`);
   }

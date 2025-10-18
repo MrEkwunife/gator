@@ -8,11 +8,11 @@ const commandRegiter: CommandRegistry = {
   login: handlerLogin,
 };
 
-function main() {
+async function main() {
   const [usrCmd, ...args] = argv.slice(2);
 
   try {
-    runCommand(commandRegiter, usrCmd, ...args);
+    await runCommand(commandRegiter, usrCmd, ...args);
   } catch (e) {
     console.log((e as Error).message);
     exit(1);

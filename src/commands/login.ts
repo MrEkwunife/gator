@@ -1,6 +1,6 @@
 import { setUser } from "src/config";
 
-export function handlerLogin(cmdName: string, ...args: string[]) {
+export async function handlerLogin(cmdName: string, ...args: string[]) {
   if (args.length !== 1) {
     throw new Error(`\t${cmdName} expects 1 arg but got ${args.length}`);
   }
