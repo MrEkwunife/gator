@@ -8,6 +8,7 @@ import { handlerReset } from "./commands/reset";
 import { getUsers } from "./commands/users";
 import { handlerAgg } from "./commands/aggregrate";
 import { handlerAddFeed } from "./commands/feeds";
+import { handlerListFeeds } from "./commands/feeds";
 
 const commandRegiter: CommandRegistry = {
   login: handlerLogin,
@@ -16,6 +17,7 @@ const commandRegiter: CommandRegistry = {
   users: getUsers,
   agg: handlerAgg,
   addfeed: handlerAddFeed,
+  feeds: handlerListFeeds,
 };
 
 async function main() {
