@@ -1,7 +1,7 @@
 import { argv, exit } from "node:process";
 
 import type { CommandRegistry } from "./types";
-import { runCommand } from "./utils/run";
+import { runCommand } from "./lib/utils/run";
 import { handlerLogin } from "./commands/login";
 
 const commandRegiter: CommandRegistry = {
