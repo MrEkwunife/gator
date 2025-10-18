@@ -5,11 +5,13 @@ import { runCommand } from "./lib/utils/run";
 import { handlerLogin } from "./commands/login";
 import { handlerRegister } from "./commands/register";
 import { handlerReset } from "./commands/reset";
+import { getUsers } from "./commands/users";
 
 const commandRegiter: CommandRegistry = {
   login: handlerLogin,
   register: handlerRegister,
   reset: handlerReset,
+  users: getUsers,
 };
 
 async function main() {
