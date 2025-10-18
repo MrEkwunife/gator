@@ -1,7 +1,7 @@
 import { argv, exit } from "node:process";
 
 import type { CommandRegistry } from "./types";
-import { runCommand } from "./lib/utils/run";
+import { runCommand } from "./utils/run";
 import { handlerLogin } from "./commands/login";
 import { handlerRegister } from "./commands/register";
 import { handlerReset } from "./commands/reset";
