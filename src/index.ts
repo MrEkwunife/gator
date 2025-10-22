@@ -9,6 +9,8 @@ import { getUsers } from "./commands/users";
 import { handlerAgg } from "./commands/aggregrate";
 import { handlerAddFeed } from "./commands/feeds";
 import { handlerListFeeds } from "./commands/feeds";
+import { handlerFollow, handlerListFeedFollows } from "./commands/feed_follows";
+import { middlewareLoggedIn } from "./utils/middlewares";
 
 const commandRegiter: CommandRegistry = {
   login: handlerLogin,
@@ -16,8 +18,10 @@ const commandRegiter: CommandRegistry = {
   reset: handlerReset,
   users: getUsers,
   agg: handlerAgg,
-  addfeed: handlerAddFeed,
+  addfeed: middlewareLoggedIn(handlerAddFeed),
   feeds: handlerListFeeds,
+  follow: middlewareLoggedIn(handlerFollow),
+  following: middlewareLoggedIn(handlerListFeedFollows),
 };
 
 async function main() {
