@@ -1,2 +1,4 @@
-many 'users' -> can follow same 'feed'
-a 'user' - can follow many 'feed'
+# GATOR
+
+A web xml Agregator.
+Documetation will be written after completion of v2

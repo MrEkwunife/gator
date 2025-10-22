@@ -10,6 +10,7 @@ import { handlerAgg } from "./commands/aggregrate";
 import { handlerAddFeed } from "./commands/feeds";
 import { handlerListFeeds } from "./commands/feeds";
 import { handlerFollow, handlerListFeedFollows } from "./commands/feed_follows";
+import { handlerDeleteFollow } from "./commands/delete_follow";
 import { middlewareLoggedIn } from "./utils/middlewares";
 
 const commandRegiter: CommandRegistry = {
@@ -22,6 +23,7 @@ const commandRegiter: CommandRegistry = {
   feeds: handlerListFeeds,
   follow: middlewareLoggedIn(handlerFollow),
   following: middlewareLoggedIn(handlerListFeedFollows),
+  unfollow: middlewareLoggedIn(handlerDeleteFollow),
 };
 
 async function main() {
