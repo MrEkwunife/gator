@@ -1,8 +1,12 @@
 import { CommandRegistry } from "./types.js";
-import { registerCommand, runCommand } from "./command_utils.js";
-import { handlerLogin } from "./login.js";
+import {
+  registerCommand,
+  runCommand,
+} from "./command_handlers/command_utils.js";
+import { handlerLogin } from "./command_handlers/login.js";
+import { handlerRegister } from "./command_handlers/register.js";
 
-function main() {
+async function main() {
   const [cmdName, ...args] = process.argv.slice(2);
   if (!cmdName) {
     console.log("Not enough argument");
@@ -11,8 +15,10 @@ function main() {
 
   const registry: CommandRegistry = {};
   registerCommand(registry, "login", handlerLogin);
+  registerCommand(registry, "register", handlerRegister);
+
   try {
-    runCommand(registry, cmdName, ...args);
+    await runCommand(registry, cmdName, ...args);
   } catch (err) {
     if (err instanceof Error) {
       console.log(err.message);
@@ -22,6 +28,8 @@ function main() {
 
     process.exit(1);
   }
+
+  process.exit(0);
 }
 
-main();
+await main();

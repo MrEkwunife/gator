@@ -1,4 +1,4 @@
-import { CommandRegistry, CommandHandler } from "./types.js";
+import { CommandRegistry, CommandHandler } from "../types.js";
 
 export function registerCommand(
   registry: CommandRegistry,
@@ -8,7 +8,7 @@ export function registerCommand(
   registry[cmdName] = handler;
 }
 
-export function runCommand(
+export async function runCommand(
   registry: CommandRegistry,
   cmdName: string,
   ...args: string[]
@@ -18,5 +18,5 @@ export function runCommand(
     throw new Error(`Commad: ${handler} not found!`);
   }
 
-  handler(cmdName, ...args);
+  await handler(cmdName, ...args);
 }
