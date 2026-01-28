@@ -4,10 +4,12 @@ import {
   runCommand,
 } from "./command_handlers/command_utils.js";
 
-import { handlerLogin } from "./command_handlers/login.js";
-import { handlerRegister } from "./command_handlers/register.js";
 import { handlerReset } from "./command_handlers/reset.js";
-import { handlerGetUsers } from "./command_handlers/users.js";
+import {
+  handlerGetUsers,
+  handlerLogin,
+  handlerRegister,
+} from "./command_handlers/users.js";
 
 async function main() {
   const [cmdName, ...args] = process.argv.slice(2);
