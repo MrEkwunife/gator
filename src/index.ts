@@ -11,6 +11,7 @@ import {
   handlerLogin,
   handlerRegister,
 } from "./command_handlers/users.js";
+import { handlerAddfeed } from "./command_handlers/feeds.js";
 
 async function main() {
   const [cmdName, ...args] = process.argv.slice(2);
@@ -25,6 +26,7 @@ async function main() {
   registerCommand(registry, "reset", handlerReset);
   registerCommand(registry, "users", handlerGetUsers);
   registerCommand(registry, "agg", handlerAgg);
+  registerCommand(registry, "addfeed", handlerAddfeed);
 
   try {
     await runCommand(registry, cmdName, ...args);

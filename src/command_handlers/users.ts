@@ -1,7 +1,7 @@
 import { getAllUsers, createUser, getUser } from "../lib/db/queries/user";
 import { readConfig, setUser } from "../config";
 
-export async function handlerGetUsers() {
+export async function handlerGetUsers(_: string) {
   try {
     const users = await getAllUsers();
     const loggedInUsername = readConfig().currentUserName;
@@ -17,7 +17,7 @@ export async function handlerGetUsers() {
   }
 }
 
-export async function handlerRegister(_cmdName: string, ...args: string[]) {
+export async function handlerRegister(_: string, ...args: string[]) {
   if (args.length !== 1) {
     throw new Error(`register expects 1 arg but got ${args.length}`);
   }
@@ -31,7 +31,7 @@ export async function handlerRegister(_cmdName: string, ...args: string[]) {
   }
 }
 
-export async function handlerLogin(cmdName: string, ...args: string[]) {
+export async function handlerLogin(_: string, ...args: string[]) {
   if (args.length !== 1) {
     throw new Error(`Login expects 1 arg, got ${args.length}`);
   }
