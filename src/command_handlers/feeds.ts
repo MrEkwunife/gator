@@ -20,7 +20,7 @@ export async function handlerFeeds(_: string) {
   feeds.forEach((feed) => {
     console.log(`Feed name: ${feed.feeds.name}`);
     console.log(`Feed name: ${feed.feeds.url}`);
-    console.log(`Feed name: ${feed.users.name}`);
+    console.log(`Current Username: ${feed.users.name}`);
 
     console.log("\n===================================\n");
   });
