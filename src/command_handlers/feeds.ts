@@ -1,5 +1,3 @@
-import { readConfig } from "../config";
-import { getUser } from "../lib/db/queries/user";
 import {
   createFeed,
   getFeeds,
@@ -9,13 +7,11 @@ import {
 } from "../lib/db/queries/feeds";
 import type { User, Feed } from "../lib/db/schema";
 
-export async function handlerAddfeed(_: string, ...args: string[]) {
+export async function handlerAddfeed(_: string, user: User, ...args: string[]) {
   if (args.length !== 2) {
     throw new Error(`addfeed expects 2 args but got ${args.length}`);
   }
 
-  const usernameFromConfig = readConfig().currentUserName;
-  const user = await getUser(usernameFromConfig);
   const { id } = user;
   const [name, url] = args;
   const feed = await createFeed(name, url, id);
@@ -35,25 +31,26 @@ export async function handlerFeeds(_: string) {
   });
 }
 
-export async function handlerFollowFeed(_: string, ...args: string[]) {
+export async function handlerFollowFeed(
+  _: string,
+  user: User,
+  ...args: string[]
+) {
   if (args.length !== 1) {
     throw new Error(`follow expects 1 arg but got ${args.length}`);
   }
 
   const [url] = args;
-  const user = await getUser(readConfig().currentUserName);
   const feed = await getFeedByURL(url);
-  if (!user || !feed) {
+  if (!feed) {
     throw new Error("User or Feed not found!");
   }
 
-  const feedFollow = await createFeedFollow(user.id, feed.id);
-  console.log(`FeedName: ${feedFollow.feedName}`);
-  console.log(`FollowerName: ${feedFollow.userName}`);
+  const __ = await createFeedFollow(user.id, feed.id);
+  printFeed(feed, user);
 }
 
-export async function handlerFollowing(_: string) {
-  const user = await getUser(readConfig().currentUserName);
+export async function handlerFollowing(_: string, user: User) {
   const feedFollows = await getFeedFollowForUser(user.id);
   if (feedFollows.length === 0) {
     console.log("Not Following any Feed");
