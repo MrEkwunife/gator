@@ -4,6 +4,7 @@ import {
   getFeedByURL,
   createFeedFollow,
   getFeedFollowForUser,
+  deleteFeedFollowForUser,
 } from "../lib/db/queries/feeds";
 import type { User, Feed } from "../lib/db/schema";
 
@@ -48,6 +49,24 @@ export async function handlerFollowFeed(
 
   const __ = await createFeedFollow(user.id, feed.id);
   printFeed(feed, user);
+}
+
+export async function handlerUnfollowFeed(
+  _: string,
+  user: User,
+  ...args: string[]
+) {
+  if (args.length !== 1) {
+    throw new Error(`unfollow command expects 1 arg but got ${args.length}`);
+  }
+
+  const { id: feedId, name: feedName } = await getFeedByURL(args[0]);
+  if (!feedId) {
+    throw new Error("Feed Not found");
+  }
+
+  await deleteFeedFollowForUser(user.id, feedId);
+  console.log(`Unfollowed ${feedName}`);
 }
 
 export async function handlerFollowing(_: string, user: User) {
