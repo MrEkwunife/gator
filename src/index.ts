@@ -12,15 +12,12 @@ import {
   handlerGetUsers,
   handlerLogin,
   handlerRegister,
-} from "./command_handlers/users.js";
-
-import {
-  handlerAddfeed,
-  handlerFeeds,
   handlerFollowFeed,
   handlerFollowing,
   handlerUnfollowFeed,
-} from "./command_handlers/feeds.js";
+} from "./command_handlers/users.js";
+
+import { handlerAddfeed, handlerFeeds } from "./command_handlers/feeds.js";
 
 import { loginMiddleWare } from "./command_handlers/middlewares.js";
 
